@@ -29,4 +29,3 @@ def get_score2(f0, f1):
 
 scores = [get_score2(f[0], f[2]) for f in lines]
 print(sum(scores))
-
