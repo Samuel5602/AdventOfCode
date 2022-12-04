@@ -3,16 +3,7 @@ with open('./2022/Day3/day3_input.txt', 'r') as f:
     lines = [g[:-1] for g in f.readlines()]
 
 # Challenge 1
-half_lens = [int(len(f)/2) for f in lines]
+compartments = [(set(f[:int(len(f)/2)]).intersection(set(f[-int(len(f)/2):])), ord(str(set(f[:int(len(f)/2)]).intersection(set(f[-int(len(f)/2):])).pop()))) for f in lines]
 
-half_data = zip(lines, half_lens)
-
-compartments = [set(f[:g]).intersection(set(f[-g:])) for f, g in half_data]
-
-print(compartments[:5])
-
-prios = [ord(list(f)[0]) - (96 if ord(list(f)[0]) < 65 else 38) for f in compartments]
-print(len(prios))
-# print(sum(prios))
-
-# kleine letters (<27) - 96, grote letters (>26) -38
+prios = [ord(f[0].pop()) - (96 if list(f)[1] > 97 else 38) for f in compartments]
+print(sum(prios))
